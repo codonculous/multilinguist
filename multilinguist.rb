@@ -1,7 +1,6 @@
 require 'httparty'
 require 'json'
 
-
 # This class represents a world traveller who knows what languages are spoken in each country
 # around the world and can cobble together a sentence in most of them (but not very well)
 class Multilinguist
@@ -11,9 +10,7 @@ class Multilinguist
   #{name}?fullText=true
   #?text=The%20total%20is%2020485&to=ja&from=en
 
-
   # Initializes the multilinguist's @current_lang to 'en'
-  #
   # @return [Multilinguist] A new instance of Multilinguist
   def initialize
     @current_lang = 'en'
@@ -53,3 +50,13 @@ class Multilinguist
   end
 end
 
+class MathGenius < Multilinguist
+
+  def reports_total( num_s )
+
+    s = num_s.sum
+    "#{say_in_local_language( "The total number is :" )} #{s}"
+
+  end
+
+end
