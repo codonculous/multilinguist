@@ -60,3 +60,38 @@ class MathGenius < Multilinguist
   end
 
 end
+
+class QuoteCollector < Multilinguist
+  @@pool = []
+  @@topic = []
+
+  def self.create(q,t)
+    @@pool.push( QuoteCollector.new(q,t) )
+    ( @@topic.push(t) ) if @@topic.include?(t) == false
+  end
+
+  def self.share
+
+    puts "Current available quote topic are: "
+    @@topic.each { |t| puts "#{t}" }
+    puts "Please type the topic or type 0 for a random quote"
+    ans = gets.chomp
+
+    if ans == "0"
+      return  @@pool[rand(@@pool.length)].quote
+    else
+      spool = @@pool.select {|quote| quote.topic == ans}
+      return  spool[rand(spool.length)].quote
+    end
+
+  end
+
+  attr_reader :quote, :topic
+
+  def initialize(quote,topic)
+    super()
+    @quote = quote
+    @topic = topic
+  end
+
+end
